@@ -33,8 +33,12 @@ export default new Vuex.Store({
           return resolve(msg)
         }
       })
-    }
+    },
     // join another game
+    joinGame: function (context, payload) {
+      const name = payload.name
+      const roomId = payload.room
+    }
   },
   modules: {
   }
