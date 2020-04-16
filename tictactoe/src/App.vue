@@ -36,12 +36,19 @@
 	font-size: 60px;
 	/* font-family: Helvetica; */
 }
-
+.gameBoard {
+  width: 70%;
+  border-radius: 10px;
+  background-color: lightgreen;
+  padding: 20px;
+  margin: 100px auto;
+}
 .kenter{
-	margin: 0 auto;
+  margin: 50px auto;
 }
 
-tr {
+td {
+  padding: 10px;
   border: none;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="gameBoard" style="">
-    <h2 id="userHello"></h2>
+  <div class="gameBoard">
+    <h2 id="userHello">Hello, {{ player }}</h2>
     <h3 id="turn"></h3>
     <table class="kenter nes-table is-centered">
       <tr>
