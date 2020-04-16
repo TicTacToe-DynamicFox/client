@@ -35,7 +35,9 @@ export default {
       join: {
         name: '',
         room: ''
-      }
+      },
+      joinGameForm: false,
+      newGameForm: false
     }
   },
   methods: {

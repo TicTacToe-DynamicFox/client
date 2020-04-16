@@ -1,7 +1,7 @@
 <template>
   <div class="gameBoard">
-    <h2 id="userHello"></h2>
-    <h3 id="message"></h3>
+    <h2 id="userHello">{{ player }}</h2>
+    <h3 id="message">{{ message }}</h3>
     <table class="kenter nes-table is-centered">
       <tr>
         <td><button class="nes-btn" id="button_00"></button></td>
@@ -39,10 +39,25 @@ export default {
         `Hello, ${data.name}. Please ask your friend to enter Game ID: 
         ${data.room}. Waiting for player 2...`;
       this.message = message
-      this.$store.commit('SET_GAME', data.room)
       // Create game for player 1
+      this.$store.commit('SET_GAME', data.room)
       // game = new Game(data.room);
       // game.displayBoard(message);
+    }),
+    socket.on('player1', (data) => {
+      const message = `Hello, ${this.$store.state.player.getPlayerName()}`;
+      this.player = message
+      // $('#userHello').html(message);
+      this.$store.state.player.setCurrentTurn(true);
+    }),
+    socket.on('player2', (data) => {
+      const message = `Hello, ${data.name}`;
+      this.message = message
+      // Create game for player 2
+      this.$store.commit('SET_GAME', data.room)
+      // game = new Game(data.room);
+      // game.displayBoard(message);
+      this.$store.state.player.setCurrentTurn(false);
     })
   }
 }
