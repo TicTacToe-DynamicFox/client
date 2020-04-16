@@ -33,14 +33,18 @@
   color: #42b983;
 }
 
-.tile{
+.nes-btn{
 	width: 80px;
 	height: 80px;
 	font-size: 60px;
-	font-family: Helvetica;
+	/* font-family: Helvetica; */
 }
 
-.center{
+.kenter{
 	margin: 0 auto;
+}
+
+tr {
+  border: none;
 }
 </style>

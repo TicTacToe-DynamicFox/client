@@ -2,21 +2,21 @@
 			<div class="gameBoard" style="display: block;">
 				<h2 id="userHello"></h2>
 				<h3 id="turn"></h3>
-				<table class="center">
+				<table class="kenter nes-table is-centered">
 					<tr>
-						<td><button class="tile" id="button_00"></button></td>
-						<td><button class="tile" id="button_01"></button></td>
-						<td><button class="tile" id="button_02"></button></td>
+						<td><button class="nes-btn" id="button_00"></button></td>
+						<td><button class="nes-btn" id="button_01"></button></td>
+						<td><button class="nes-btn" id="button_02"></button></td>
 					</tr>
 					<tr>
-						<td><button class="tile" id="button_10"></button></td>
-						<td><button class="tile" id="button_11"></button></td>
-						<td><button class="tile" id="button_12"></button></td>
+						<td><button class="nes-btn" id="button_10"></button></td>
+						<td><button class="nes-btn" id="button_11"></button></td>
+						<td><button class="nes-btn" id="button_12"></button></td>
 					</tr>
 					<tr>
-						<td><button class="tile" id="button_20"></button></td>
-						<td><button class="tile" id="button_21"></button></td>
-						<td><button class="tile" id="button_22"></button></td>
+						<td><button class="nes-btn" id="button_20"></button></td>
+						<td><button class="nes-btn" id="button_21"></button></td>
+						<td><button class="nes-btn" id="button_22"></button></td>
 					</tr>
 				</table>
 			</div>
