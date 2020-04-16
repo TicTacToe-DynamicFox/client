@@ -39,6 +39,10 @@ class Player {
   getCurrentTurn () {
     return this.currentTurn
   }
+
+  coba () {
+    return this.name
+  }
 }
 
 module.exports = Player
