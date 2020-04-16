@@ -21,13 +21,13 @@ export default new Vuex.Store({
   actions: {
     // start game
     newGame: function (context, payload) {
-      const name = payload.name
+      const name = payload
       return new Promise((resolve, reject) => {
         if (!name) {
           const msg = 'Please enter your name.'
           return reject(msg)
         } else {
-          const msg = name + 'success created'
+          const msg = name + ' success created'
           socket.emit('createGame', { name })
           context.commit('SET_PLAYER', new Player(name, this.p1))
           return resolve(msg)
