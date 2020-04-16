@@ -1,5 +1,5 @@
 <template>
-			<div class="gameBoard" style="display: none;">
+			<div class="gameBoard" style="display: block;">
 				<h2 id="userHello"></h2>
 				<h3 id="turn"></h3>
 				<table class="center">

@@ -28,4 +28,15 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.tile{
+	width: 80px;
+	height: 80px;
+	font-size: 60px;
+	font-family: Helvetica;
+}
+
+.center{
+	margin: 0 auto;
+}
 </style>
