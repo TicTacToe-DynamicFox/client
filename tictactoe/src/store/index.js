@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Player from './player.js'
-import io from 'socket.io-client'
-const socket = io.connect('http://localhost:3000')
+// import io from 'socket.io-client'
+// const socket = io.connect('http://localhost:3000')
 
 Vue.use(Vuex)
 
@@ -28,8 +28,8 @@ export default new Vuex.Store({
           return reject(msg)
         } else {
           const msg = name + ' success created'
-          socket.emit('createGame', { name })
-          context.commit('SET_PLAYER', new Player(name, this.p1))
+          // socket.emit('createGame', { name })
+          context.commit('SET_PLAYER', new Player(name, this.state.P1))
           return resolve(msg)
         }
       })
