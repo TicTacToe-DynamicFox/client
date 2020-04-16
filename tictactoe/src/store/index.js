@@ -34,6 +34,7 @@ export default new Vuex.Store({
         }
       })
     }
+    // join another game
   },
   modules: {
   }
