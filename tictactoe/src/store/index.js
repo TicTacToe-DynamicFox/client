@@ -17,6 +17,7 @@ export default new Vuex.Store({
   mutations: {
     SET_PLAYER: function (state, payload) {
       state.player = payload
+      console.log(state.player)
     }
   },
   actions: {
@@ -30,7 +31,7 @@ export default new Vuex.Store({
         } else {
           const msg = name + ' success created'
           socket.emit('createGame', { name })
-          context.commit('SET_PLAYER', new Player(name, this.p1))
+          context.commit('SET_PLAYER', new Player(name, this.state.P1))
           return resolve(msg)
         }
       })
@@ -45,7 +46,7 @@ export default new Vuex.Store({
           return reject(msg)
         }
         socket.emit('joinGame', { name, room: roomID })
-        context.commit('SET_PLAYER', new Player(name, this.p2))
+        context.commit('SET_PLAYER', new Player(name, this.state.P2))
       })
     }
   },
