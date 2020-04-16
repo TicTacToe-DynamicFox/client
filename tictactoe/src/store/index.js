@@ -40,13 +40,15 @@ export default new Vuex.Store({
     joinGame: function (context, payload) {
       return new Promise((resolve, reject) => {
         const name = payload.name
-        const roomID = payload.roomID
-        if (!name || !roomID) {
+        const room = payload.room
+        if (!name || !room) {
           const msg = 'Please enter your name and Room id'
           return reject(msg)
+        } else {
+          const msg = `Wellcome ${name}`
+          context.commit('SET_PLAYER', new Player(name, this.state.P2))
+          return resolve(msg)
         }
-        socket.emit('joinGame', { name, room: roomID })
-        context.commit('SET_PLAYER', new Player(name, this.state.P2))
       })
     }
   },

@@ -15,9 +15,9 @@
 
     <br><br>
     <h4>Join an existing game</h4>
-    <form action="">
-      <input type="text" name="name" id="nameJoin" placeholder="Enter your name" required>
-      <input type="text" name="room" id="room" placeholder="Enter Game ID" required>
+    <form @submit.prevent="joinGame">
+      <input v-model="join.name" type="text" name="name" id="nameJoin" placeholder="Enter your name">
+      <input v-model="join.room" type="text" name="room" id="room" placeholder="Enter Game ID">
       <button id="join">Join Game</button>
     </form>
   </div>
@@ -31,7 +31,11 @@ export default {
   name: 'Home',
   data () {
     return {
-      name: ''
+      name: '',
+      join: {
+        name: '',
+        room: ''
+      }
     }
   },
   methods: {
@@ -46,17 +50,18 @@ export default {
         .catch(err => {
           Swal.fire(err)
         })
+    },
+    joinGame () {
+      this.$store.dispatch('joinGame', this.join)
+        .then(result => {
+          socket.emit('joinGame', this.join)
+          Swal.fire(result)
+          this.$router.push('/board')
+        })
+        .catch(err => {
+          Swal.fire(err)
+        })
     }
-    // existingGame () {
-    //   this.$store.dispatch('newGame', this.name)
-    //     .then(result => {
-    //       Swal.fire(result)
-    //       this.$router.push('/board')
-    //     })
-    //     .catch(err => {
-    //       Swal.fire(err)
-    //     })
-    // }
   }
 }
 </script>
