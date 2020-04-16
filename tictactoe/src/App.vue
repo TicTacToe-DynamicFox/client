@@ -14,6 +14,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100vh;
+  padding: 15px;
+  margin: 0!important;
+  /* background-color: #42b983; */
 }
 
 #nav {
