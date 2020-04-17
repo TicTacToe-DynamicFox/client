@@ -23,44 +23,36 @@
 </template>
 
 <script>
-import socket from '../config/socket'
-
+import $ from 'jquery'
+import Game from '../store/board.js'
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:3000')
 export default {
   name: 'Board',
-  data () {
-    return {
-      player: '',
-      message: ''
+  computed: {
+    player: function () {
+      return this.$store.player
+    },
+    game: function () {
+      return this.$store.game
     }
   },
-  mounted () {
+  created: function () {
     socket.on('newGame', (data) => {
-      const message =
-        `Hello, ${data.name}. Please ask your friend to enter Game ID: 
-        ${data.room}. Waiting for player 2...`
-      this.message = message
-      console.log('hei sudah new game')
-      // Create game for player 1
-      this.$store.commit('SET_GAME', data.room)
-      // game = new Game(data.room);
-      // game.displayBoard(message);
+      const message = 'Hello,' + data.name + 'Please ask your friend to enter Game ID: ' + data.room + 'Waiting for player 2...'
+      this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, Game))
+      this.computed.game.displayBoard(message)
     })
-    socket.on('player1', (data) => {
-      const message = `Hello, ${this.$store.state.player.getPlayerName()}`
-      this.player = message
-      console.log('yap, kamu player 1.')
-      // $('#userHello').html(message);
-      this.$store.state.player.setCurrentTurn(true)
+    socket.on('player1', () => {
+      const message = `Hello, ${this.computed.player.player.getPlayerName()}`
+      $('#userHello').html(message)
+      this.computed.player.setCurrentTurn(true)
     })
     socket.on('player2', (data) => {
       const message = `Hello, ${data.name}`
-      this.message = message
-      // Create game for player 2
-      console.log('ada yang gabung')
-      this.$store.commit('SET_GAME', data.room)
-      // game = new Game(data.room);
-      // game.displayBoard(message);
-      this.$store.state.player.setCurrentTurn(false)
+      this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, this.computed.game))
+      this.computed.game.displayBoard(message)
+      this.computed.player.setCurrentTurn(false)
     })
   }
 }
