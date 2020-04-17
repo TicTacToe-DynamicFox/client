@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import Player from './player.js'
 // import Game from './board.js'
 import io from 'socket.io-client'
-const socket = io.connect('http://localhost:3000')
+const socket = io.connect('https://quiet-thicket-58379.herokuapp.com/')
 
 Vue.use(Vuex)
 
@@ -12,7 +12,15 @@ export default new Vuex.Store({
     P1: 'X',
     P2: 'O',
     player: null,
-    game: null
+    game: null,
+    name: '',
+    type: '',
+    currentTurn: true,
+    playsArr: 0,
+    count1: 0,
+    count2: 0,
+    count1Sock: 0,
+    count2Sock: 0
   },
   mutations: {
     SET_PLAYER: function (state, payload) {
@@ -21,6 +29,21 @@ export default new Vuex.Store({
     },
     SET_GAME: function (state, payload) {
       // state.game = new Game(payload)
+    },
+    SET_CURRENT_TURN (state, payload) {
+      state.currentTurn = payload
+    },
+    counter1 (state, count1) {
+      state.count1Sock++
+    },
+    counter2 (state, count2) {
+      state.count2Sock++
+    },
+    setCount1 (state, count1) {
+      state.count1Sock = count1
+    },
+    setCount2 (state, count2) {
+      state.count2Sock = count2
     }
   },
   actions: {

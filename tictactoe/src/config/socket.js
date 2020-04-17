@@ -1,2 +1,2 @@
 import io from 'socket.io-client'
-export default io('http://localhost:3000')
+export default io('https://quiet-thicket-58379.herokuapp.com/')

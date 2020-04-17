@@ -2,23 +2,12 @@
   <div class="gameBoard nes-text">
     <h2 id="userHello">{{ player }}</h2>
     <h3 id="message">{{ message }}</h3>
-    <table class="kenter nes-table is-centered">
-      <tr>
-        <td><button class="nes-btn tic" id="button_00"></button></td>
-        <td><button class="nes-btn tic" id="button_01"></button></td>
-        <td><button class="nes-btn tic" id="button_02"></button></td>
-      </tr>
-      <tr>
-        <td><button class="nes-btn tic" id="button_10"></button></td>
-        <td><button class="nes-btn tic" id="button_11"></button></td>
-        <td><button class="nes-btn tic" id="button_12"></button></td>
-      </tr>
-      <tr>
-        <td><button class="nes-btn tic" id="button_20"></button></td>
-        <td><button class="nes-btn tic" id="button_21"></button></td>
-        <td><button class="nes-btn tic" id="button_22"></button></td>
-      </tr>
-    </table>
+    <h1>Time's up!</h1>
+    <h1>Final Score</h1>
+    <div>
+      <h2>Player 1: {{count1Sock}}</h2>
+      <h3>Player 2: {{count2Sock}}</h3>
+    </div>
   </div>
 </template>
 
@@ -31,6 +20,23 @@ export default {
     return {
       player: '',
       message: ''
+    }
+  },
+  computed: {
+    count1Sock: {
+      get () {
+        return this.$store.state.count1Sock
+      }
+    },
+    count2Sock: {
+      get () {
+        return this.$store.state.count2Sock
+      }
+    }
+  },
+  methods: {
+    setCurrentTurn (turn) {
+      this.$store.commit('SET_CURRENT_TURN', turn)
     }
   },
   mounted () {
