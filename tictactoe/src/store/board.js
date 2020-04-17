@@ -1,7 +1,8 @@
 const Swal = require('sweetalert2')
 const $ = require('jquery')
-const io = require('socket.io-client')
-const socket = io.connect('http://localhost:3000')
+const socket = require('../config/socket')
+// const io = require('socket.io-client')
+// const socket = io.connect('http://localhost:3000')
 
 class Game {
   constructor (roomId, player, game) {
@@ -16,6 +17,7 @@ class Game {
     function tileClickHandler () {
       const row = parseInt(this.id.split('_')[1][0], 10)
       const col = parseInt(this.id.split('_')[1][1], 10)
+      console.log('ini this.player', this.player)
       if (!this.player.getCurrentTurn() || !this.game) {
         Swal.fire('Its not your turn!')
         return

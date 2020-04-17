@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Player from './player.js'
 // import Game from './board.js'
-import io from 'socket.io-client'
-const socket = io.connect('http://localhost:3000')
+// import io from 'socket.io-client'
+// const socket = io.connect('http://localhost:3000')
+import socket from '../config/socket'
 
 Vue.use(Vuex)
 
@@ -20,7 +21,7 @@ export default new Vuex.Store({
       console.log(state.player)
     },
     SET_GAME: function (state, payload) {
-      state.player = payload
+      state.game = payload
     }
   },
   actions: {
@@ -32,14 +33,14 @@ export default new Vuex.Store({
           const msg = 'Please enter your name.'
           return reject(msg)
         } else {
-          const msg = name + ' success created'
+          const msg = ' wellcome' + name
           socket.emit('createGame', name)
           context.commit('SET_PLAYER', new Player(name, this.state.P1))
           return resolve(msg)
         }
       })
     },
-    // join another game
+    // join another gamez
     joinGame: function (context, payload) {
       return new Promise((resolve, reject) => {
         const name = payload.name

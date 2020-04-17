@@ -25,7 +25,6 @@
 
 <script>
 import Swal from 'sweetalert2'
-import socket from '../config/socket'
 
 export default {
   name: 'Home',
@@ -45,8 +44,6 @@ export default {
       this.$store.dispatch('newGame', this.name)
         .then(result => {
           Swal.fire(result)
-          socket.emit('createGame', this.name)
-          // console.log(this.$store.state.player)
           this.$router.push('/board')
         })
         .catch(err => {
@@ -56,7 +53,6 @@ export default {
     joinGame () {
       this.$store.dispatch('joinGame', this.join)
         .then(result => {
-          socket.emit('joinGame', this.join)
           Swal.fire(result)
           this.$router.push('/board')
         })
