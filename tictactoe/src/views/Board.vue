@@ -23,7 +23,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import $ from 'jquery'
 import Game from '../store/board.js'
 import io from 'socket.io-client'
@@ -54,46 +53,6 @@ export default {
       this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, this.computed.game))
       this.computed.game.displayBoard(message)
       this.computed.player.setCurrentTurn(false)
-=======
-import socket from '../config/socket'
-
-export default {
-  name: 'Board',
-  data () {
-    return {
-      player: '',
-      message: ''
-    }
-  },
-  mounted () {
-    socket.on('newGame', (data) => {
-      const message =
-        `Hello, ${data.name}. Please ask your friend to enter Game ID: 
-        ${data.room}. Waiting for player 2...`
-      this.message = message
-      console.log('hei sudah new game')
-      // Create game for player 1
-      this.$store.commit('SET_GAME', data.room)
-      // game = new Game(data.room);
-      // game.displayBoard(message);
-    })
-    socket.on('player1', (data) => {
-      const message = `Hello, ${this.$store.state.player.getPlayerName()}`
-      this.player = message
-      console.log('yap, kamu player 1.')
-      // $('#userHello').html(message);
-      this.$store.state.player.setCurrentTurn(true)
-    })
-    socket.on('player2', (data) => {
-      const message = `Hello, ${data.name}`
-      this.message = message
-      // Create game for player 2
-      console.log('ada yang gabung')
-      this.$store.commit('SET_GAME', data.room)
-      // game = new Game(data.room);
-      // game.displayBoard(message);
-      this.$store.state.player.setCurrentTurn(false)
->>>>>>> 82f29d129da8a92fad3819beaeb6b341e4490b85
     })
   }
 }
