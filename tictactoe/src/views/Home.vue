@@ -7,17 +7,17 @@
       <li>Player 2 Enter another username and the room id that is displayed on first window.</li>
       <li>Click on join game. </li>
     </ol>
+    <form class="nes-field" @submit.prevent="newGame">
     <h4>Create a new Game</h4>
-    <form @submit.prevent="newGame">
-    <input v-model="name" type="text" name="name" id="nameNew" placeholder="Enter your name">
+    <input class="nes-input" v-model="name" type="text" name="name" id="nameNew" placeholder="Enter your name">
     <button class="nes-btn is-success" id="new">New Game</button>
     </form>
 
     <br><br>
-    <h4>Join an existing game</h4>
-    <form @submit.prevent="joinGame">
-      <input v-model="join.name" type="text" name="name" id="nameJoin" placeholder="Enter your name">
-      <input v-model="join.room" type="text" name="room" id="room" placeholder="Enter Game ID">
+    <form class="nes-field" @submit.prevent="joinGame">
+      <h4>Join an existing game</h4>
+      <input class="nes-input" v-model="join.name" type="text" name="name" id="nameJoin" placeholder="Enter your name">
+      <input class="nes-input" v-model="join.room" type="text" name="room" id="room" placeholder="Enter Game ID">
       <button class="nes-btn is-success" id="join">Join Game</button>
     </form>
   </div>
