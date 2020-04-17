@@ -18,6 +18,10 @@ export default new Vuex.Store({
     SET_PLAYER: function (state, payload) {
       state.player = payload
       console.log(state.player)
+    },
+    SET_GAME: function (state, payload) {
+      state.game = payload
+      console.log(state.player)
     }
   },
   actions: {
