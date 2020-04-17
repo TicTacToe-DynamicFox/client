@@ -19,7 +19,7 @@ export default new Vuex.Store({
       state.player = payload
       console.log(state.player)
     },
-    SET_GAME: function(state, payload) {
+    SET_GAME: function (state, payload) {
       state.game = new Game(payload)
     }
   },

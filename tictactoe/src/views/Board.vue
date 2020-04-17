@@ -37,27 +37,27 @@ export default {
     socket.on('newGame', (data) => {
       const message =
         `Hello, ${data.name}. Please ask your friend to enter Game ID: 
-        ${data.room}. Waiting for player 2...`;
+        ${data.room}. Waiting for player 2...`
       this.message = message
       // Create game for player 1
       this.$store.commit('SET_GAME', data.room)
       // game = new Game(data.room);
       // game.displayBoard(message);
-    }),
+    })
     socket.on('player1', (data) => {
-      const message = `Hello, ${this.$store.state.player.getPlayerName()}`;
+      const message = `Hello, ${this.$store.state.player.getPlayerName()}`
       this.player = message
       // $('#userHello').html(message);
-      this.$store.state.player.setCurrentTurn(true);
-    }),
+      this.$store.state.player.setCurrentTurn(true)
+    })
     socket.on('player2', (data) => {
-      const message = `Hello, ${data.name}`;
+      const message = `Hello, ${data.name}`
       this.message = message
       // Create game for player 2
       this.$store.commit('SET_GAME', data.room)
       // game = new Game(data.room);
       // game.displayBoard(message);
-      this.$store.state.player.setCurrentTurn(false);
+      this.$store.state.player.setCurrentTurn(false)
     })
   }
 }
