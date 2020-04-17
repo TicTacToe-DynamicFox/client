@@ -1,22 +1,22 @@
 <template>
-  <div class="gameBoard">
+  <div class="gameBoard nes-text">
     <h2 id="userHello">{{ player }}</h2>
     <h3 id="message">{{ message }}</h3>
     <table class="kenter nes-table is-centered">
       <tr>
-        <td><button class="nes-btn" id="button_00"></button></td>
-        <td><button class="nes-btn" id="button_01"></button></td>
-        <td><button class="nes-btn" id="button_02"></button></td>
+        <td><button class="nes-btn tic" id="button_00"></button></td>
+        <td><button class="nes-btn tic" id="button_01"></button></td>
+        <td><button class="nes-btn tic" id="button_02"></button></td>
       </tr>
       <tr>
-        <td><button class="nes-btn" id="button_10"></button></td>
-        <td><button class="nes-btn" id="button_11"></button></td>
-        <td><button class="nes-btn" id="button_12"></button></td>
+        <td><button class="nes-btn tic" id="button_10"></button></td>
+        <td><button class="nes-btn tic" id="button_11"></button></td>
+        <td><button class="nes-btn tic" id="button_12"></button></td>
       </tr>
       <tr>
-        <td><button class="nes-btn" id="button_20"></button></td>
-        <td><button class="nes-btn" id="button_21"></button></td>
-        <td><button class="nes-btn" id="button_22"></button></td>
+        <td><button class="nes-btn tic" id="button_20"></button></td>
+        <td><button class="nes-btn tic" id="button_21"></button></td>
+        <td><button class="nes-btn tic" id="button_22"></button></td>
       </tr>
     </table>
   </div>
@@ -39,6 +39,7 @@ export default {
         `Hello, ${data.name}. Please ask your friend to enter Game ID: 
         ${data.room}. Waiting for player 2...`
       this.message = message
+      console.log('hei sudah new game')
       // Create game for player 1
       this.$store.commit('SET_GAME', data.room)
       // game = new Game(data.room);
@@ -47,6 +48,7 @@ export default {
     socket.on('player1', (data) => {
       const message = `Hello, ${this.$store.state.player.getPlayerName()}`
       this.player = message
+      console.log('yap, kamu player 1.')
       // $('#userHello').html(message);
       this.$store.state.player.setCurrentTurn(true)
     })
@@ -54,6 +56,7 @@ export default {
       const message = `Hello, ${data.name}`
       this.message = message
       // Create game for player 2
+      console.log('ada yang gabung')
       this.$store.commit('SET_GAME', data.room)
       // game = new Game(data.room);
       // game.displayBoard(message);
