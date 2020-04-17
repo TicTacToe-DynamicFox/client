@@ -1,40 +1,50 @@
 <template>
-  <div class="gameBoard">
+  <div class="gameBoard nes-text">
     <h2 id="userHello">{{ player }}</h2>
     <h3 id="message">{{ message }}</h3>
     <table class="kenter nes-table is-centered">
       <tr>
-        <td><button class="nes-btn" id="button_00"></button></td>
-        <td><button class="nes-btn" id="button_01"></button></td>
-        <td><button class="nes-btn" id="button_02"></button></td>
+        <td><button class="nes-btn tic" id="button_00"></button></td>
+        <td><button class="nes-btn tic" id="button_01"></button></td>
+        <td><button class="nes-btn tic" id="button_02"></button></td>
       </tr>
       <tr>
-        <td><button class="nes-btn" id="button_10"></button></td>
-        <td><button class="nes-btn" id="button_11"></button></td>
-        <td><button class="nes-btn" id="button_12"></button></td>
+        <td><button class="nes-btn tic" id="button_10"></button></td>
+        <td><button class="nes-btn tic" id="button_11"></button></td>
+        <td><button class="nes-btn tic" id="button_12"></button></td>
       </tr>
       <tr>
-        <td><button class="nes-btn" id="button_20"></button></td>
-        <td><button class="nes-btn" id="button_21"></button></td>
-        <td><button class="nes-btn" id="button_22"></button></td>
+        <td><button class="nes-btn tic" id="button_20"></button></td>
+        <td><button class="nes-btn tic" id="button_21"></button></td>
+        <td><button class="nes-btn tic" id="button_22"></button></td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import socket from '../config/socket'
 import $ from 'jquery'
 import Game from '../store/board.js'
 
+=======
+import $ from 'jquery'
+import Game from '../store/board.js'
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:3000')
+>>>>>>> 65780127303d3d9aed505b3db43b09dce5ed3f77
 export default {
   name: 'Board',
-  data () {
-    return {
-      player: '',
-      message: ''
+  computed: {
+    player: function () {
+      return this.$store.player
+    },
+    game: function () {
+      return this.$store.game
     }
   },
+<<<<<<< HEAD
   createGameBoard (button) {
     function tileClickHandler () {
       const row = parseInt(this.id.split('_')[1][0], 10)
@@ -76,21 +86,33 @@ export default {
       this.$store.commit('SET_GAME', new Game(data.room))
       // game = new Game(data.room);
       // game.displayBoard(message);
+=======
+  created: function () {
+    socket.on('newGame', (data) => {
+      const message = 'Hello,' + data.name + 'Please ask your friend to enter Game ID: ' + data.room + 'Waiting for player 2...'
+      this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, Game))
+      this.computed.game.displayBoard(message)
+>>>>>>> 65780127303d3d9aed505b3db43b09dce5ed3f77
     })
-    socket.on('player1', (data) => {
-      const message = `Hello, ${this.$store.state.player.getPlayerName()}`
-      this.player = message
-      // $('#userHello').html(message);
-      this.$store.state.player.setCurrentTurn(true)
+    socket.on('player1', () => {
+      const message = `Hello, ${this.computed.player.player.getPlayerName()}`
+      $('#userHello').html(message)
+      this.computed.player.setCurrentTurn(true)
     })
     socket.on('player2', (data) => {
       const message = `Hello, ${data.name}`
+<<<<<<< HEAD
       this.message = message
       // Create game for player 2
       this.$store.commit('SET_GAME', new Game(data.room))
       // game = new Game(data.room);
       // game.displayBoard(message);
       this.$store.state.player.setCurrentTurn(false)
+=======
+      this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, this.computed.game))
+      this.computed.game.displayBoard(message)
+      this.computed.player.setCurrentTurn(false)
+>>>>>>> 65780127303d3d9aed505b3db43b09dce5ed3f77
     })
     socket.on('turnPlayed', (data) => {
       const row = data.tile.split('_')[1][0]
