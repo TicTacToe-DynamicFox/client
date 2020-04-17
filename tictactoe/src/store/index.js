@@ -20,7 +20,11 @@ export default new Vuex.Store({
       console.log(state.player)
     },
     SET_GAME: function (state, payload) {
+<<<<<<< HEAD
+      state.player = payload
+=======
       // state.game = new Game(payload)
+>>>>>>> 82f29d129da8a92fad3819beaeb6b341e4490b85
     }
   },
   actions: {
