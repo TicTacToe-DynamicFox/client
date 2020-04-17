@@ -23,8 +23,37 @@
 </template>
 
 <script>
-
+import $ from 'jquery'
+import Game from '../store/board.js'
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:3000')
 export default {
-  name: 'Board'
+  name: 'Board',
+  computed: {
+    player: function () {
+      return this.$store.player
+    },
+    game: function () {
+      return this.$store.game
+    }
+  },
+  created: function () {
+    socket.on('newGame', (data) => {
+      const message = 'Hello,' + data.name + 'Please ask your friend to enter Game ID: ' + data.room + 'Waiting for player 2...'
+      this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, Game))
+      this.computed.game.displayBoard(message)
+    })
+    socket.on('player1', () => {
+      const message = `Hello, ${this.computed.player.player.getPlayerName()}`
+      $('#userHello').html(message)
+      this.computed.player.setCurrentTurn(true)
+    })
+    socket.on('player2', (data) => {
+      const message = `Hello, ${data.name}`
+      this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, this.computed.game))
+      this.computed.game.displayBoard(message)
+      this.computed.player.setCurrentTurn(false)
+    })
+  }
 }
 </script>

@@ -1,3 +1,4 @@
+const $ = require('jquery')
 class Player {
   constructor (name, type) {
     this.name = name
@@ -24,8 +25,8 @@ class Player {
   setCurrentTurn (turn) {
     this.currentTurn = turn
     const message = turn ? 'Your turn' : 'Waiting for Opponent'
+    $('#turn').text(message)
     return message
-    // $('#turn').text(message)
   }
 
   getPlayerName () {

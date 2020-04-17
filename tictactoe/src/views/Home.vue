@@ -44,7 +44,7 @@ export default {
         .then(result => {
           Swal.fire(result)
           socket.emit('createGame', this.name)
-          console.log(this.$store.state.player)
+          // console.log(this.$store.state.player)
           this.$router.push('/board')
         })
         .catch(err => {
