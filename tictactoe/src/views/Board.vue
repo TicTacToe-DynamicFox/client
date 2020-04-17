@@ -48,19 +48,19 @@ export default {
       const message = 'Hello,' + data.name + 'Please ask your friend to enter Game ID: ' + data.room + 'Waiting for player 2...'
       this.m = message
       console.log(this.m)
-      this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, Game))
+      this.$store.commit('SET_GAME', new Game(data.room, this.player, Game))
       this.game.displayBoard(message)
     })
     socket.on('player1', () => {
-      const message = `Hello, ${this.computed.player.player.getPlayerName()}`
+      const message = `Hello, ${this.player.getPlayerName()}`
       $('#userHello').html(message)
       this.player.setCurrentTurn(true)
     })
     socket.on('player2', (data) => {
       const message = `Hello, ${data.name}`
-      this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, this.computed.game))
-      this.computed.game.displayBoard(message)
-      this.computed.player.setCurrentTurn(false)
+      this.$store.commit('SET_GAME', new Game(data.room, this.player, this.game))
+      this.game.displayBoard(message)
+      this.player.setCurrentTurn(false)
     })
   }
 }
