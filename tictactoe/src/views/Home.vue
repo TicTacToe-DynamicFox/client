@@ -10,7 +10,7 @@
     <h4>Create a new Game</h4>
     <form @submit.prevent="newGame">
     <input v-model="name" type="text" name="name" id="nameNew" placeholder="Enter your name">
-    <button id="new">New Game</button>
+    <button class="nes-btn is-success" id="new">New Game</button>
     </form>
 
     <br><br>
@@ -18,7 +18,7 @@
     <form @submit.prevent="joinGame">
       <input v-model="join.name" type="text" name="name" id="nameJoin" placeholder="Enter your name">
       <input v-model="join.room" type="text" name="room" id="room" placeholder="Enter Game ID">
-      <button id="join">Join Game</button>
+      <button class="nes-btn is-success" id="join">Join Game</button>
     </form>
   </div>
 </template>
