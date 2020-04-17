@@ -1,10 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Player from './player.js'
-<<<<<<< HEAD
-=======
 // import Game from './board.js'
->>>>>>> 65780127303d3d9aed505b3db43b09dce5ed3f77
 import io from 'socket.io-client'
 const socket = io.connect('http://localhost:3000')
 
@@ -23,18 +20,7 @@ export default new Vuex.Store({
       console.log(state.player)
     },
     SET_GAME: function (state, payload) {
-<<<<<<< HEAD
-      state.game = payload
-<<<<<<< HEAD
-<<<<<<< HEAD
-      console.log(state.player)
-=======
->>>>>>> development
-=======
-=======
       state.player = payload
->>>>>>> 65780127303d3d9aed505b3db43b09dce5ed3f77
->>>>>>> development
     }
   },
   actions: {
