@@ -20,7 +20,11 @@ export default new Vuex.Store({
       console.log(state.player)
     },
     SET_GAME: function (state, payload) {
+<<<<<<< HEAD
       state.player = payload
+=======
+      // state.game = new Game(payload)
+>>>>>>> 82f29d129da8a92fad3819beaeb6b341e4490b85
     }
   },
   actions: {
@@ -33,7 +37,7 @@ export default new Vuex.Store({
           return reject(msg)
         } else {
           const msg = name + ' success created'
-          socket.emit('createGame', { name })
+          socket.emit('createGame', name)
           context.commit('SET_PLAYER', new Player(name, this.state.P1))
           return resolve(msg)
         }

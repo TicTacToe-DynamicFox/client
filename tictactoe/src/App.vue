@@ -1,8 +1,16 @@
 <template>
-  <div id="app">
+  <div class="nes-text" id="app">
     <router-view/>
   </div>
 </template>
+<script>
+export default {
+  name: 'App',
+  created () {
+    this.$router.push('/')
+  }
+}
+</script>
 
 <style>
 #app {
@@ -30,18 +38,25 @@
   color: #42b983;
 }
 
-.nes-btn{
+.tic{
 	width: 80px;
 	height: 80px;
 	font-size: 60px;
 	/* font-family: Helvetica; */
 }
-
+.gameBoard {
+  width: 70%;
+  border-radius: 10px;
+  /* background-color: lightgreen; */
+  padding: 20px;
+  margin: 100px auto;
+}
 .kenter{
-	margin: 0 auto;
+  margin: 50px auto;
 }
 
-tr {
+td {
+  padding: 10px;
   border: none;
 }
 </style>
