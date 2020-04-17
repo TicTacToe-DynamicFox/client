@@ -24,6 +24,8 @@
 
 <script>
 import socket from '../config/socket'
+import $ from 'jquery'
+import Game from '../store/board.js'
 
 export default {
   name: 'Board',
@@ -33,6 +35,37 @@ export default {
       message: ''
     }
   },
+  createGameBoard (button) {
+    function tileClickHandler () {
+      const row = parseInt(this.id.split('_')[1][0], 10)
+      const col = parseInt(this.id.split('_')[1][1], 10)
+      if (!this.$store.state.player.getCurrentTurn() || !this.$store.state.game) {
+        alert('Its not your turn!')
+        return
+      }
+
+      // if ($(this).prop('disabled')) {
+      //   alert('This tile has already been played on!')
+      //   return
+      // }
+
+      // Update board after your turn.
+      this.$store.state.game.playTurn(this)
+      this.$store.state.game.updateBoard(this.$store.state.player.getPlayerType(), row, col, this.id)
+
+      this.$store.state.player.setCurrentTurn(false)
+      this.$store.state.player.updatePlaysArr(1 << ((row * 3) + col))
+
+      this.$store.state.game.checkWinner()
+    }
+
+    for (let i = 0; i < 3; i++) {
+      this.board.push(['', '', ''])
+      for (let j = 0; j < 3; j++) {
+        $(`#button_${i}${j}`).on('click', tileClickHandler)
+      }
+    }
+  },
   mounted () {
     socket.on('newGame', (data) => {
       const message =
@@ -40,7 +73,7 @@ export default {
         ${data.room}. Waiting for player 2...`
       this.message = message
       // Create game for player 1
-      this.$store.commit('SET_GAME', data.room)
+      this.$store.commit('SET_GAME', new Game(data.room))
       // game = new Game(data.room);
       // game.displayBoard(message);
     })
@@ -54,10 +87,25 @@ export default {
       const message = `Hello, ${data.name}`
       this.message = message
       // Create game for player 2
-      this.$store.commit('SET_GAME', data.room)
+      this.$store.commit('SET_GAME', new Game(data.room))
       // game = new Game(data.room);
       // game.displayBoard(message);
       this.$store.state.player.setCurrentTurn(false)
+    })
+    socket.on('turnPlayed', (data) => {
+      const row = data.tile.split('_')[1][0]
+      const col = data.tile.split('_')[1][1]
+      const opponentType = this.$store.state.player.getPlayerType() === this.$store.state.P1 ? this.$store.state.P2 : this.$store.state.P1
+
+      this.$store.state.game.updateBoard(opponentType, row, col, data.tile)
+      this.$store.state.player.setCurrentTurn(true)
+    })
+    socket.on('gameEnd', (data) => {
+      this.$store.state.game.endGame(data.message)
+      this.socket.leave(data.room)
+    })
+    socket.on('err', (data) => {
+      this.$store.state.game.endGame(data.message)
     })
   }
 }
