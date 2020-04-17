@@ -1,0 +1,50 @@
+[33mcommit 65e3d6e040c16070d6be68e69e12069ed92e3649[m[33m ([m[1;36mHEAD -> [m[1;32mdevelopment[m[33m)[m
+Author: thomasmartuaps <thomasmartuaps@gmail.com>
+Date:   Thu Apr 16 22:52:49 2020 +0700
+
+    install vuetify
+
+[33mcommit bb062025d8523842a9c8291a1e2f299043078956[m[33m ([m[1;31morigin/development[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: thomasmartuaps <thomasmartuaps@gmail.com>
+Date:   Thu Apr 16 21:08:54 2020 +0700
+
+    Game page
+
+[33mcommit 32e7e55ab8a14c521ee907a90e0ee01057d5f862[m
+Merge: ae2c7c4 d7e4abb
+Author: raihanard <30310725+RaihanArdianata@users.noreply.github.com>
+Date:   Thu Apr 16 20:50:33 2020 +0700
+
+    Merge pull request #1 from TicTacToe-DynamicFox/storeNewGameAndPlayer
+    
+    done add new action new game and instance player
+
+[33mcommit ae2c7c4b22cbaa904211a6df3ceaf16c722d1dd1[m
+Author: thomasmartuaps <thomasmartuaps@gmail.com>
+Date:   Thu Apr 16 20:40:25 2020 +0700
+
+    bersiap untuk merge
+
+[33mcommit d7e4abbfe35e513b85d2f06b27957dc6c7faa53d[m
+Author: RaihanArdianata <bxgxxxx@gmail.com>
+Date:   Thu Apr 16 20:35:50 2020 +0700
+
+    done add new action new game and instance player
+
+[33mcommit c1a2713a65d6a4854093914fe2d1d4da0bd0b278[m
+Author: thomasmartuaps <thomasmartuaps@gmail.com>
+Date:   Thu Apr 16 20:30:09 2020 +0700
+
+    hahahahaha
+
+[33mcommit 407b00ee5aae0f47a3803265f680a96acee5049b[m
+Author: thomasmartuaps <thomasmartuaps@gmail.com>
+Date:   Thu Apr 16 18:56:17 2020 +0700
+
+    setup
+
+[33mcommit 2ccb55a6c827dfefd569f770faf264e3399311fd[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Adhiawa Alif Archiafinno <52859912+archiafinno@users.noreply.github.com>
+Date:   Thu Apr 16 18:26:02 2020 +0700
+
+    Initial commit
