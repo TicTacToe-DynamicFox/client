@@ -2,6 +2,7 @@
   <div class="gameBoard nes-text">
     <h2 id="userHello">{{ player }}</h2>
     <h3 id="message">{{ message }}</h3>
+    <h2>{{m}}</h2>
     <table class="kenter nes-table is-centered">
       <tr>
         <td><button class="nes-btn tic" id="button_00"></button></td>
@@ -29,24 +30,31 @@ import io from 'socket.io-client'
 const socket = io.connect('http://localhost:3000')
 export default {
   name: 'Board',
+  data () {
+    return {
+      m: ''
+    }
+  },
   computed: {
     player: function () {
-      return this.$store.player
+      return this.$store.state.player
     },
     game: function () {
-      return this.$store.game
+      return this.$store.state.game
     }
   },
   created: function () {
     socket.on('newGame', (data) => {
       const message = 'Hello,' + data.name + 'Please ask your friend to enter Game ID: ' + data.room + 'Waiting for player 2...'
+      this.m = message
+      console.log(this.m)
       this.$store.commit('SET_GAME', new Game(data.room, this.computed.player, Game))
-      this.computed.game.displayBoard(message)
+      this.game.displayBoard(message)
     })
     socket.on('player1', () => {
       const message = `Hello, ${this.computed.player.player.getPlayerName()}`
       $('#userHello').html(message)
-      this.computed.player.setCurrentTurn(true)
+      this.player.setCurrentTurn(true)
     })
     socket.on('player2', (data) => {
       const message = `Hello, ${data.name}`
